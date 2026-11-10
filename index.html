@@ -1,0 +1,363 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#eee8fb">
+  <title>Marianne's 19th Birthday</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Pacifico&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="ambient ambient-one"></div>
+<div class="ambient ambient-two"></div>
+
+<canvas id="confetti-canvas"></canvas>
+
+<main>
+
+  <!-- SCREEN 1: INTRO -->
+
+  <section class="screen active" id="screen-1">
+
+    <div class="card intro-card">
+
+      <div class="mini-stars">
+        <span>✧</span>
+        <span>♡</span>
+        <span>✦</span>
+      </div>
+
+      <p class="eyebrow">Porr aydaaaa</p>
+
+      <h1 class="script-title">WAZAPPP<br>MANANAP!</h1>
+
+      <p class="intro-copy">
+        Tagnaa unsa ni HUWAWERS!
+      </p>
+
+      <div class="intro-doodle">
+        <svg viewBox="0 0 180 130" fill="none">
+          <ellipse cx="90" cy="112" rx="64" ry="9" fill="#B9A4DC" opacity=".2"/>
+          <path d="M43 67 Q90 35 137 67 L130 105 Q90 125 50 105Z" fill="#654032"/>
+          <ellipse cx="90" cy="67" rx="47" ry="19" fill="#C5AFE5"/>
+          <path d="M57 68 Q61 84 69 72 Q78 65 87 77 Q98 91 108 74 Q119 60 126 74" stroke="#F9F4FF" stroke-width="5" stroke-linecap="round"/>
+          <path d="M87 45 V24" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/>
+          <path d="M87 22 C75 9 90 -1 94 12 C99 24 87 28 87 22Z" fill="#FFB85C"/>
+          <path d="M30 33 L34 44 L45 48 L34 52 L30 63 L26 52 L15 48 L26 44Z" fill="#A9CFE8"/>
+          <path d="M146 24 L149 33 L158 36 L149 39 L146 48 L143 39 L134 36 L143 33Z" fill="#B9A4DC"/>
+        </svg>
+      </div>
+
+      <button class="btn btn-primary full-width" data-next="2">
+        I TUKLOK FLESS ✧
+      </button>
+
+      <p class="bottom-note">
+        .
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- SCREEN 2: CAKE -->
+
+  <section class="screen" id="screen-2">
+
+    <div class="content-wrap cake-screen">
+
+      <p class="eyebrow">uyyyyyy</p>
+
+      <h2 class="script-heading">
+        HAPPY 19TH BIRTHDAYYY,<br>
+        MARIANNE!
+      </h2>
+
+      <p class="cake-subtitle">
+        Another year older, guwangggg.
+      </p>
+
+
+      <!-- CAKE -->
+
+<div class="cake-stage">
+
+  <div class="cake-shadow"></div>
+
+  <div class="plate"></div>
+
+  <div class="cake-body">
+
+    <div class="cake-layer layer-bottom"></div>
+    <div class="cake-layer layer-top"></div>
+
+    <div class="cake-seam"></div>
+
+    
+    <!-- ONE CONNECTED GLOSSY GLAZE -->
+    <div class="glaze">
+
+      <div class="glaze-top"></div>
+
+      <div class="glaze-drip drip-one"></div>
+      <div class="glaze-drip drip-two"></div>
+      <div class="glaze-drip drip-three"></div>
+      <div class="glaze-drip drip-four"></div>
+      <div class="glaze-drip drip-five"></div>
+      <div class="glaze-drip drip-six"></div>
+
+      <div class="glaze-shine"></div>
+
+      <span class="glaze-sprinkle sprinkle-one"></span>
+      <span class="glaze-sprinkle sprinkle-two"></span>
+      <span class="glaze-sprinkle sprinkle-three"></span>
+
+    </div>
+
+  </div>
+
+  <!-- CANDLE -->
+  <div class="candle-wrap">
+    <div class="wick"></div>
+
+    <div class="candle">
+      <div id="flame" class="flame"></div>
+      <div id="smoke" class="smoke"></div>
+    </div>
+  </div>
+
+  <div class="cake-number">19th</div>
+
+</div>
+
+
+
+      <p class="cake-subtitle" style="margin-bottom:17px;">
+        BEPOR EBRETING DO I APPRECIATE SA IMO SELFFF YEHEYYY.
+      </p>
+
+
+      <!-- WISH CARD -->
+
+      <div class="wish-card">
+
+        <h3 id="wish-text" class="wish-heading">
+          MAKE A WISHHH DOOOO
+        </h3>
+
+        <p id="wish-help" class="wish-help">
+          .
+        </p>
+
+        <button id="ready-button" class="btn btn-blue full-width">
+          READY NA??
+        </button>
+
+        <button id="blow-button" class="btn btn-primary full-width is-hidden">
+          TAYUPIII NA HAHAHA!
+        </button>
+
+      </div>
+
+      <p class="bottom-note">
+        yeheyyy
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- SCREEN 3: BIRTHDAY LETTER -->
+
+  <section class="screen" id="screen-3">
+
+    <div class="content-wrap letter-screen">
+
+      <div class="celebration-mark">
+        <svg viewBox="0 0 80 80" fill="none">
+          <path d="M40 65 C15 48 8 33 22 22 C31 15 39 23 40 29 C46 17 62 17 67 29 C73 44 53 59 40 65Z" fill="#B9A4DC"/>
+          <path d="M40 59 C22 46 18 36 27 29" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+          <path d="M13 10 L16 19 L25 22 L16 25 L13 34 L10 25 L1 22 L10 19Z" fill="#A9CFE8"/>
+        </svg>
+      </div>
+
+      <p class="eyebrow">dodododo</p>
+
+      <h2 class="script-heading">
+        YEHEYYY PBIRTHDAY DO!
+      </h2>
+
+      <div class="letter-card">
+
+        <div class="letter-topline">
+          <span>✧</span>
+          <span>A birthday tita marianne</span>
+          <span>✧</span>
+        </div>
+
+        <div class="letter-body">
+
+          <p>
+            Pbirthday againnn dooo!! HAHAHAHAHA kani do rag tarung2 na ni kay wa jud ko nakatarung gabii do hehe WAHAHAHAHA
+          </p>
+
+          <p>
+            Amping pirmi do ayaw sigeg ingug patay2 kay nananana stay healthy dooo ayaw na sige kaon ug processed food, ampingi imong self kay usa ra baya na imong lawas HAHAHAHAHA
+          </p>
+
+          <p>
+            Ayaw sigeg kaguol or ka-stress dara ha. Nara ra ko diri always mamikon nimo so better get used to me na WAHAHAHAHA mwa mwaaa happy birthday againnn dooo!!
+          </p>
+
+        </div>
+
+        <div class="letter-signoff">
+          With lots of kabuang and appreciation heehhhh
+        </div>
+
+      </div>
+
+      <button id="surprise-button" class="btn btn-blue full-width">
+        HALAAA WAITTTT ✧
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- SCREEN 4: HIDDEN REMINDER -->
+
+  <section class="screen" id="screen-4">
+
+    <div class="content-wrap reminder-screen">
+
+      <div class="floating-decor">
+        <span>♡</span>
+        <span>✧</span>
+        <span>♡</span>
+      </div>
+
+      <p class="eyebrow">aysaaaaaa</p>
+
+      <h2 class="script-heading">
+        A LITTLE REMINDER
+      </h2>
+
+      <div class="reminder-card">
+
+        <span class="reminder-sparkle">✧</span>
+
+        <div class="reminder-icon">
+          <svg viewBox="0 0 80 80" fill="none">
+            <path d="M40 66 C17 49 9 34 23 22 C32 14 40 23 40 29 C48 16 63 18 68 30 C74 44 53 59 40 66Z" fill="#A9CFE8"/>
+            <path d="M18 10 L21 18 L29 21 L21 24 L18 32 L15 24 L7 21 L15 18Z" fill="#B9A4DC"/>
+            <path d="M63 8 L66 15 L73 18 L66 21 L63 28 L60 21 L53 18 L60 15Z" fill="#C7B4E5"/>
+          </svg>
+        </div>
+
+        <p>
+          19 na you now dooo HAHAHAHAHA pero ayaw sa pagdali2 sa tanan ha you don't have to figure everything now dayurnnn...
+        </p>
+
+        <p>
+          Enjoy lang sa imong little moments gud, take your time, ayaw sigeg pressure sa imong self and always remember na you deserve good things sab.
+        </p>
+
+        <p>
+          Amping pirmi do, stay healthy and be happy kay gusto pa ko mamikon nimo for a longgggggg time WAHAHAHAHA mwaaa
+        </p>
+
+      </div>
+
+      <button class="btn btn-primary full-width" data-next="5">
+        PADAYOWNNN →
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- SCREEN 5: FINAL -->
+
+  <section class="screen" id="screen-5">
+
+    <div class="card final-card">
+
+      <div class="mini-stars">
+        <span>✧</span>
+        <span>♡</span>
+        <span>✦</span>
+      </div>
+
+      <div class="final-cake-icon">
+
+        <svg viewBox="0 0 180 150" fill="none">
+
+          <ellipse cx="90" cy="133" rx="72" ry="9" fill="#B9A4DC" opacity=".2"/>
+
+          <path d="M35 76 Q90 52 145 76 L139 119 Q90 139 41 119Z" fill="#523122"/>
+
+          <path d="M35 76 Q90 52 145 76 L139 89 Q90 108 41 89Z" fill="#694332"/>
+
+          <ellipse cx="90" cy="76" rx="55" ry="20" fill="#B9A4DC"/>
+
+          <path d="M42 78 Q48 100 60 83 Q71 74 82 91 Q96 109 109 87 Q124 72 137 87" stroke="#E9DFF8" stroke-width="8" stroke-linecap="round"/>
+
+          <path d="M88 56 V30" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round"/>
+
+          <path d="M88 28 C76 14 91 1 96 15 C101 28 88 34 88 28Z" fill="#FFBD64"/>
+
+          <ellipse cx="90" cy="133" rx="72" ry="8" fill="#D9EAF7"/>
+
+          <path d="M18 45 L22 55 L32 59 L22 63 L18 73 L14 63 L4 59 L14 55Z" fill="#A9CFE8"/>
+
+          <path d="M150 29 L153 37 L161 40 L153 43 L150 51 L147 43 L139 40 L147 37Z" fill="#B9A4DC"/>
+
+        </svg>
+
+      </div>
+
+      <p class="eyebrow">And before thattttt chr langgg...</p>
+
+      <h2 class="script-heading">
+        ONCE AGAINNN,<br>
+        HAPPY 19TH BIRTHDAY,<br>
+        DOOOO!
+      </h2>
+
+      <p class="final-message">
+        May this new chapter be kinder to you dooo. moreee kalagot, kasamok, kakapoy, aydahhh og ambot to comeee HAHAHAHAHA more peace, happiness and good things to come unta. perks syempre padayon rag reklamo sa life kay mao naman jud na imong naandan WAHAHAHAHAHA
+      </p>
+
+      <div class="final-badge">
+        DESERVE NIMO NI DO
+      </div>
+
+      <p class="final-footnote">
+        Here's to more birthdays, memories, and kalagot nimo do stay pagka maldita.
+      </p>
+
+      <button id="replay-button" class="btn btn-primary full-width restart-button">
+        utro2?? ↻
+      </button>
+
+    </div>
+
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>

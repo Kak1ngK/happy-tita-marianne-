@@ -1,0 +1,850 @@
+
+/* Marianne's 19th birthday surprise */
+
+:root {
+  --lavender: #b9a4dc;
+  --lavender-deep: #9276bd;
+  --lavender-pale: #eee8fb;
+  --blue: #a9cfe8;
+  --blue-deep: #6fa8d0;
+  --blue-pale: #e4f2fb;
+  --cream: #fffaf5;
+  --chocolate: #45271f;
+  --chocolate-mid: #654032;
+  --ink: #51465f;
+  --muted: #887d98;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: var(--ink);
+  font-family: 'Nunito', sans-serif;
+  background:
+    radial-gradient(circle at 12% 15%, rgba(255,255,255,.9) 0 2px, transparent 3px),
+    radial-gradient(circle at 86% 28%, rgba(255,255,255,.8) 0 2px, transparent 3px),
+    linear-gradient(145deg, #f4efff 0%, #e6effb 52%, #f8eaf5 100%);
+  background-size: 75px 75px, 105px 105px, auto;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font: inherit;
+}
+
+#confetti-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 50;
+}
+
+.ambient {
+  position: fixed;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  filter: blur(65px);
+  opacity: .22;
+  pointer-events: none;
+}
+
+.ambient-one {
+  background: #c5a9e5;
+  top: -90px;
+  left: -90px;
+}
+
+.ambient-two {
+  background: #a9d5ee;
+  right: -100px;
+  bottom: -80px;
+}
+
+main {
+  position: relative;
+  min-height: 100svh;
+}
+
+.screen {
+  position: absolute;
+  inset: 0;
+  min-height: 100svh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 18px 34px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(14px);
+  transition: opacity .55s ease, transform .55s ease, visibility .55s;
+}
+
+.screen.active {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.card,
+.letter-card,
+.wish-card,
+.reminder-card {
+  background: rgba(255,255,255,.82);
+  border: 1px solid rgba(255,255,255,.95);
+  box-shadow: 0 18px 48px rgba(91,74,117,.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.card {
+  width: min(100%, 440px);
+  border-radius: 30px;
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.intro-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.mini-stars {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  color: #a18acb;
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.mini-stars span:nth-child(2) {
+  color: #8bbbdc;
+  transform: translateY(-8px);
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  color: #9a88b5;
+  font-size: .68rem;
+  font-weight: 900;
+}
+
+.script-title,
+.script-heading,
+.letter-title {
+  font-family: 'Pacifico', cursive;
+  font-weight: 400;
+  color: #9073b6;
+}
+
+.script-title {
+  font-size: clamp(2.5rem, 11vw, 3.5rem);
+  line-height: 1.25;
+  margin: 8px 0 12px;
+  text-shadow: 0 3px 0 #fff;
+}
+
+.intro-copy {
+  color: #6d7891;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 1.08rem;
+  margin: 0 0 8px;
+}
+
+.intro-doodle {
+  width: 155px;
+  margin: 0 auto 12px;
+}
+
+.intro-doodle svg {
+  display: block;
+  width: 100%;
+}
+
+.bottom-note {
+  margin: 18px 0 0;
+  color: #988ca8;
+  font-size: .76rem;
+  letter-spacing: .04em;
+}
+
+/* BUTTONS */
+
+.btn {
+  border: 2px solid rgba(255,255,255,.95);
+  border-radius: 999px;
+  padding: 14px 23px;
+  min-height: 49px;
+  color: #fff;
+  font-weight: 900;
+  letter-spacing: .045em;
+  font-size: .82rem;
+  cursor: pointer;
+  box-shadow: 0 9px 20px rgba(117,91,151,.22);
+  transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
+}
+
+.btn:active {
+  transform: scale(.96);
+}
+
+.btn:hover {
+  filter: brightness(1.04);
+  box-shadow: 0 12px 24px rgba(117,91,151,.27);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #b7a0d8, #9275bc);
+}
+
+.btn-blue {
+  background: linear-gradient(135deg, #9fc9e5, #6ea8d1);
+  box-shadow: 0 9px 20px rgba(93,153,196,.23);
+}
+
+.full-width {
+  width: 100%;
+}
+
+.content-wrap {
+  width: min(100%, 510px);
+  text-align: center;
+  margin: auto;
+}
+
+/* CAKE SCREEN */
+
+.cake-screen {
+  padding: 8px 0 18px;
+}
+
+.script-heading {
+  font-size: clamp(1.75rem, 7vw, 2.35rem);
+  line-height: 1.25;
+  margin: 0 0 9px;
+}
+
+.cake-subtitle {
+  max-width: 360px;
+  margin: 0 auto;
+  color: #6d7891;
+  font: 700 .88rem/1.5 'Quicksand', sans-serif;
+}
+
+.cake-stage {
+  position: relative;
+  width: 300px;
+  height: 275px;
+  margin: 4px auto 8px;
+}
+
+.cake-shadow {
+  position: absolute;
+  width: 260px;
+  height: 28px;
+  left: 20px;
+  bottom: 24px;
+  border-radius: 50%;
+  background: rgba(62,43,61,.13);
+  filter: blur(10px);
+}
+
+.plate {
+  position: absolute;
+  left: 5px;
+  bottom: 19px;
+  width: 290px;
+  height: 57px;
+  border-radius: 50%;
+  z-index: 1;
+  background: linear-gradient(180deg, #fff 0%, #e5f2fb 75%, #c7ddec 100%);
+  border: 4px solid #fff;
+  box-shadow: 0 10px 18px rgba(64,64,84,.12), inset 0 -5px 8px rgba(130,171,202,.16);
+}
+
+.plate-highlight {
+  position: absolute;
+  left: 28px;
+  bottom: 54px;
+  width: 240px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.75);
+  z-index: 7;
+}
+
+.cake-body {
+  position: absolute;
+  left: 45px;
+  bottom: 54px;
+  width: 210px;
+  height: 133px;
+  z-index: 2;
+}
+
+.cake-layer {
+  position: absolute;
+  left: 0;
+  width: 210px;
+  background: linear-gradient(90deg, #321b17, #633a2c 48%, #3e211b);
+}
+
+.layer-bottom {
+  bottom: 0;
+  height: 73px;
+  border-radius: 0 0 27px 27px;
+  box-shadow: inset -12px 0 18px rgba(0,0,0,.22);
+}
+
+.layer-top {
+  bottom: 62px;
+  height: 62px;
+  border-radius: 50% 50% 8px 8px / 35% 35% 8px 8px;
+  background: linear-gradient(90deg, #3a211b, #704533 50%, #47271e);
+}
+
+.cake-seam {
+  position: absolute;
+  left: 0;
+  bottom: 59px;
+  width: 210px;
+  height: 5px;
+  border-radius: 50%;
+  background: #271713;
+  opacity: .6;
+  z-index: 3;
+}
+
+/* LAVENDER GLAZE */
+
+
+/* GLOSSY UBE LAVENDER GLAZE */
+
+.glaze {
+  position: absolute;
+  z-index: 5;
+  top: -5px;
+  left: 0;
+  width: 210px;
+  height: 115px;
+  pointer-events: none;
+}
+
+/* Rounded top surface */
+.glaze-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 210px;
+  height: 65px;
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse at 32% 25%,
+      #eadfff 0%,
+      #d2bbed 22%,
+      #b99bdc 62%,
+      #9f80c7 100%
+    );
+
+  border: 1px solid rgba(255,255,255,.35);
+
+  box-shadow:
+    inset 0 5px 9px rgba(255,255,255,.48),
+    inset 0 -8px 12px rgba(106,75,148,.18),
+    0 3px 7px rgba(48,25,61,.12);
+}
+
+/* Connected dripping frosting */
+.glaze-drip {
+  position: absolute;
+  top: 34px;
+  background: linear-gradient(
+    90deg,
+    #aa8dce 0%,
+    #d4bced 45%,
+    #b69ad9 100%
+  );
+
+  border-radius: 0 0 16px 16px;
+
+  box-shadow:
+    inset 3px 0 5px rgba(255,255,255,.17),
+    inset -3px 0 5px rgba(83,52,117,.12);
+}
+
+.drip-one {
+  left: 12px;
+  width: 25px;
+  height: 32px;
+}
+
+.drip-two {
+  left: 48px;
+  width: 31px;
+  height: 55px;
+  border-radius: 0 0 19px 19px;
+}
+
+.drip-three {
+  left: 91px;
+  width: 25px;
+  height: 37px;
+}
+
+.drip-four {
+  left: 128px;
+  width: 34px;
+  height: 62px;
+  border-radius: 0 0 20px 20px;
+}
+
+.drip-five {
+  left: 174px;
+  width: 24px;
+  height: 30px;
+}
+
+.drip-six {
+  left: 198px;
+  width: 12px;
+  height: 43px;
+  border-radius: 0 0 10px 10px;
+}
+
+/* Glossy reflection */
+.glaze-shine {
+  position: absolute;
+  top: 12px;
+  left: 36px;
+  width: 57px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.53);
+  filter: blur(3px);
+  transform: rotate(-12deg);
+  z-index: 7;
+}
+
+.glaze-shine::after {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 87px;
+  width: 24px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.38);
+}
+
+/* Tiny decorations */
+.glaze-sprinkle {
+  position: absolute;
+  z-index: 8;
+  width: 6px;
+  height: 3px;
+  border-radius: 5px;
+  background: #fff4ff;
+}
+
+.sprinkle-one {
+  top: 25px;
+  left: 108px;
+  transform: rotate(25deg);
+}
+
+.sprinkle-two {
+  top: 39px;
+  left: 65px;
+  transform: rotate(-25deg);
+}
+
+.sprinkle-three {
+  top: 19px;
+  left: 160px;
+  transform: rotate(40deg);
+}
+
+/* WHITE CANDLE AND FLAME */
+
+.candle-wrap {
+  position: absolute;
+  z-index: 8;
+  left: 50%;
+  bottom: 176px;
+  transform: translateX(-50%);
+}
+
+.candle {
+  position: relative;
+  width: 16px;
+  height: 58px;
+  border-radius: 5px 5px 3px 3px;
+  background: repeating-linear-gradient(135deg, #fff 0 8px, #dcecf6 8px 12px);
+  box-shadow: 2px 2px 6px rgba(44,32,54,.2);
+}
+
+.wick {
+  position: absolute;
+  width: 2px;
+  height: 8px;
+  top: -7px;
+  left: 7px;
+  background: #55413d;
+}
+
+.flame {
+  position: absolute;
+  width: 17px;
+  height: 26px;
+  left: 0;
+  top: -32px;
+  border-radius: 55% 55% 48% 48% / 65% 65% 35% 35%;
+  background: radial-gradient(ellipse at 50% 70%, #fff8bd 0 18%, #ffd36a 45%, #ff9b42 80%);
+  box-shadow: 0 0 13px 5px rgba(255,194,83,.42), 0 0 24px 9px rgba(255,159,65,.22);
+  transform-origin: 50% 100%;
+  animation: flicker .65s ease-in-out infinite alternate;
+  transition: opacity .3s, transform .35s;
+}
+
+@keyframes flicker {
+  from {
+    transform: rotate(-5deg) scale(.95);
+  }
+  to {
+    transform: rotate(5deg) scale(1.06);
+  }
+}
+
+.flame.out {
+  opacity: 0;
+  transform: translateY(-15px) scale(.25);
+  animation: none;
+}
+
+.smoke {
+  position: absolute;
+  top: -38px;
+  left: 5px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  opacity: 0;
+  background: rgba(180,180,190,.65);
+  filter: blur(2px);
+}
+
+.smoke.rise {
+  animation: smoke-rise 1.25s ease-out forwards;
+}
+
+@keyframes smoke-rise {
+  0% {
+    opacity: .7;
+    transform: translate(0,0) scale(.6);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(9px,-48px) scale(2.8);
+  }
+}
+
+.cake-number {
+  position: absolute;
+  z-index: 9;
+  bottom: 100px;
+  right: 44px;
+  color: #fff3ff;
+  font: 1rem 'Pacifico', cursive;
+  transform: rotate(8deg);
+  text-shadow: 0 2px 4px rgba(30,15,15,.5);
+}
+
+/* WISH CARD */
+
+.wish-card {
+  width: min(100%, 360px);
+  margin: 0 auto;
+  border-radius: 20px;
+  padding: 17px 18px 18px;
+}
+
+.wish-heading {
+  color: #8066a8;
+  font: 800 1.1rem 'Quicksand', sans-serif;
+  margin: 0 0 5px;
+}
+
+.wish-help {
+  font-size: .8rem;
+  color: #8b8296;
+  margin: 0 0 13px;
+}
+
+.wish-card .btn + .btn {
+  margin-top: 8px;
+}
+
+.is-hidden {
+  display: none !important;
+}
+
+/* BIRTHDAY LETTER */
+
+.letter-screen,
+.reminder-screen {
+  padding: 8px 0;
+}
+
+.celebration-mark {
+  width: 62px;
+  margin: 0 auto 5px;
+}
+
+.celebration-mark svg {
+  width: 100%;
+}
+
+.letter-screen .script-heading,
+.reminder-screen .script-heading {
+  margin-bottom: 17px;
+}
+
+.letter-card {
+  border-radius: 23px;
+  padding: 21px 20px 18px;
+  text-align: left;
+  margin: 0 auto 20px;
+  max-height: 58svh;
+  overflow-y: auto;
+}
+
+.letter-topline {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  color: #a38cc7;
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 17px;
+}
+
+.letter-body p {
+  color: #5f566d;
+  font: 600 .95rem/1.75 'Quicksand', sans-serif;
+  margin: 0 0 13px;
+}
+
+.letter-body p:last-child {
+  margin-bottom: 7px;
+}
+
+.letter-signoff {
+  text-align: right;
+  color: #9b83bd;
+  font: .82rem 'Pacifico', cursive;
+}
+
+/* HIDDEN REMINDER */
+
+.reminder-card {
+  position: relative;
+  border-radius: 25px;
+  padding: 24px 22px;
+  text-align: left;
+  background: linear-gradient(145deg, rgba(255,255,255,.9), rgba(231,243,252,.9));
+  margin: 0 auto 22px;
+}
+
+.reminder-icon {
+  width: 58px;
+  margin: 0 auto 12px;
+}
+
+.reminder-icon svg {
+  width: 100%;
+}
+
+.reminder-card p {
+  color: #5d6476;
+  font: 600 .94rem/1.75 'Quicksand', sans-serif;
+  margin: 0 0 12px;
+}
+
+.reminder-card p:last-child {
+  margin-bottom: 0;
+}
+
+.reminder-sparkle {
+  position: absolute;
+  right: 18px;
+  top: 12px;
+  color: #a18acb;
+  font-size: 1.7rem;
+}
+
+.floating-decor {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin: 0 0 17px;
+  color: #80b9df;
+  font-size: 1.45rem;
+  animation: bob 2s ease-in-out infinite;
+}
+
+.floating-decor span:nth-child(2) {
+  color: #a58bc9;
+  transform: translateY(-7px);
+}
+
+@keyframes bob {
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* FINAL SCREEN */
+
+.final-card {
+  padding: 27px 22px;
+}
+
+.final-cake-icon {
+  width: 145px;
+  margin: 0 auto 8px;
+  animation: bob 2.5s ease-in-out infinite;
+}
+
+.final-cake-icon svg {
+  width: 100%;
+}
+
+.final-card .script-heading {
+  font-size: clamp(1.55rem, 6.5vw, 2rem);
+  margin-bottom: 15px;
+}
+
+.final-message {
+  color: #667083;
+  font: 600 .9rem/1.75 'Quicksand', sans-serif;
+  margin: 0 0 19px;
+}
+
+.final-badge {
+  display: inline-block;
+  padding: 12px 19px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #eee6fb, #e2f1fb);
+  border: 1px solid #fff;
+  color: #876eae;
+  font-weight: 900;
+  letter-spacing: .06em;
+  font-size: .85rem;
+}
+
+.final-footnote {
+  color: #9b8ca8;
+  font-size: .78rem;
+  margin: 17px 0;
+}
+
+.restart-button {
+  font-size: .72rem;
+}
+
+/* CONFETTI */
+
+.confetti-piece {
+  position: fixed;
+  top: -12px;
+  width: 8px;
+  height: 12px;
+  z-index: 60;
+  pointer-events: none;
+  animation: confetti-fall linear forwards;
+}
+
+@keyframes confetti-fall {
+  to {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: .15;
+  }
+}
+
+/* MOBILE RESPONSIVENESS */
+
+@media (max-height: 720px) {
+  .screen {
+    justify-content: flex-start;
+  }
+
+  .cake-stage {
+    transform: scale(.86);
+    transform-origin: top center;
+    margin-bottom: -28px;
+  }
+
+  .cake-screen {
+    padding-top: 2px;
+  }
+
+  .letter-card {
+    max-height: 48svh;
+  }
+}
+
+@media (max-width: 360px) {
+  .screen {
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+
+  .cake-stage {
+    transform: scale(.91);
+    transform-origin: top center;
+    margin-bottom: -20px;
+  }
+
+  .card {
+    padding: 27px 18px;
+  }
+}
+
+/* REDUCED MOTION ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
